@@ -1,13 +1,12 @@
 // объявление и реализация шаблонного стека
 // стек поддерживает операции: 
-// - вставка элемента, +
+// - вставка элемента, 
 // - извлечение элемента, +
 // - просмотр верхнего элемента (без удаления)+
 // - проверка на пустоту, +
 // - получение количества элементов в стеке+
 // - очистка стека+
 // при вставке в полный стек должна перевыделяться память
-
 template <typename T>
 class Stack
 {
@@ -16,7 +15,7 @@ class Stack
 	T* mem;
 public:
 	Stack();
-	Stack(int s);
+	Stack(int s = 100);
 	Stack(const Stack<T>&);
 	~Stack();
 	bool Is_Empty()
@@ -41,7 +40,7 @@ public:
 		}
 	}
 	T Top();
-	T Pop();
+	void Pop();
 	void Push(T el);
 };
 
@@ -53,13 +52,7 @@ Stack<T>::Stack(int s)
 	mem = new T[size];
 }
 
-template <typename T>
-Stack<T>::Stack()
-{
-	filled = 0;
-	size = 100;
-	mem = new T[100];
-}
+
 
 template <typename T>
 Stack<T>::Stack(const Stack<T>& OtS)
@@ -90,14 +83,13 @@ T Stack<T>::Top()
 }
 
 template <typename T>
-T Stack<T>::Pop()
+void Stack<T>::Pop()
 {
 	if (Is_Empty())
 	{
 		throw std::logic_error("Empty_Stack_Top_Element");
 	}
 	filled -= 1;
-	return mem[filled];
 }
 
 template <typename T>

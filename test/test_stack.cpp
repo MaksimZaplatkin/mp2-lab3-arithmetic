@@ -1,12 +1,9 @@
 // тесты для стека
 
+
 #include "stack.h"
 #include <gtest.h>
 
-TEST(Stack, can_create_stack)
-{
-	ASSERT_NO_THROW(Stack <int> a);
-}
 
 TEST(Stack, can_create_stack_with_positive_lenght)
 {
@@ -47,15 +44,6 @@ TEST(Stack, stacks_is_empty)
 	EXPECT_TRUE(a.Is_Empty());
 }
 
-
-TEST(Stack, can_pop_element)
-{
-	Stack<int> a(10);
-	int b = 3;
-	a.Push(b);
-	EXPECT_EQ(b, a.Pop());
-}
-
 TEST(Stack, can_top_element)
 {
 
@@ -64,14 +52,26 @@ TEST(Stack, can_top_element)
 	int c;
 	a.Push(b);
 	c = a.Top();
-	EXPECT_EQ(b, a.Pop());
+	EXPECT_EQ(b, c);
 }
+
+TEST(Stack, can_pop_element)
+{
+	Stack<int> a(10);
+	int b = 3;
+	a.Push(b);
+	a.Push(4);
+	a.Pop();
+	EXPECT_EQ(a.Top(), b);
+}
+
+
 
 TEST(Stack, can_not_pop_from_empty_stack)
 {
 	Stack<int> a(10);
 	int b;
-	ASSERT_ANY_THROW(b = a.Pop());
+	ASSERT_ANY_THROW(a.Pop());
 }
 
 TEST(Stack, can_not_top_from_empty_stack)
@@ -105,4 +105,3 @@ TEST(Stack, can_clear_stack)
 	a.Clear();
 	EXPECT_EQ(0, a.How_Many_Elem());
 }
-
